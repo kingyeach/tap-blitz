@@ -1,12 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>Tap Blitz Redirect</title>
+  <title>Tap Blitz</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3813445025672251" crossorigin="anonymous"></script>
-  <meta http-equiv="refresh" content="0;url=https://kingyeach.github.io/tap-blitz">
+  <style>
+    body { display: flex; flex-direction: column; align-items: center; font-family: Arial, sans-serif; }
+    #tapButton { width: 200px; height: 200px; font-size: 24px; background-color: #ff4444; color: white; border: none; border-radius: 10px; cursor: pointer; }
+    #tapButton:hover { background-color: #ff6666; }
+    #score, #timer { font-size: 32px; margin: 10px; }
+    #share { margin-top: 20px; }
+  </style>
 </head>
 <body>
-  <p>게임으로 이동 중...</p>
+  <div id="score">Score: 0</div>
+  <div id="timer">Time: 10</div>
+  <button id="tapButton">Tap Me!</button>
+  <button id="share" style="display: none;">Share on X</button>
+
+  <script>
+    // URL이 루트일 경우 리다이렉트
+    if (window.location.pathname === "/") {
+      window.location.replace("https://kingyeach.github.io/tap-blitz");
+    }
+
+    let score = 0;
+    let time = 10;
+    let gameActive = true;
+
+    const scoreDisplay = document.getElementById("score");
+    const timerDisplay = document.getElementById("timer");
+    const tapButton = document.getElementById("tapButton");
+    const shareButton = document.getElementById("share");
+
+    tapButton.onclick = () => {
+      if (gameActive) {
+        score++;
+        scoreDisplay.textContent = `Score: ${score}`;
+      }
+    };
+
+    const timer = setInterval(() => {
+      time--;
+      timerDisplay.textContent = `Time: ${time}`;
+      if (time <= 0) {
+        clearInterval(timer);
+        gameActive = false;
+        tapButton.disabled = true;
+        timerDisplay.textContent = `Game Over! Score: ${score}`;
+        shareButton.style.display = "block";
+      }
+    }, 1000);
+
+    shareButton.onclick = () => {
+      const tweet = `I scored ${score} in Tap Blitz! Can you beat me? https://kingyeach.github.io/tap-blitz`;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`);
+    };
+  </script>
 </body>
 </html>
