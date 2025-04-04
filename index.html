@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Tap Blitz</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3813445025672251" crossorigin="anonymous"></script>
   <style>
     body { display: flex; flex-direction: column; align-items: center; font-family: Arial, sans-serif; }
     #tapButton { width: 200px; height: 200px; font-size: 24px; background-color: #ff4444; color: white; border: none; border-radius: 10px; cursor: pointer; }
@@ -47,7 +48,7 @@
     }, 1000);
 
     shareButton.onclick = () => {
-      const tweet = `I scored ${score} in Tap Blitz! Can you beat me? [Insert Link Here]`;
+      const tweet = `I scored ${score} in Tap Blitz! Can you beat me? https://kingyeach.github.io/tap-blitz`;
       window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)}`);
     };
   </script>
