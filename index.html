@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Tap Blitz</title>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3813445025672251" crossorigin="anonymous"></script>
+  <meta http-equiv="refresh" content="0;url=https://kingyeach.github.io/tap-blitz" id="redirect">
   <style>
     body { display: flex; flex-direction: column; align-items: center; font-family: Arial, sans-serif; }
     #tapButton { width: 200px; height: 200px; font-size: 24px; background-color: #ff4444; color: white; border: none; border-radius: 10px; cursor: pointer; }
@@ -19,9 +20,11 @@
   <button id="share" style="display: none;">Share on X</button>
 
   <script>
-    // URL이 루트일 경우 리다이렉트
+    // URL이 루트일 경우에만 리다이렉트
     if (window.location.pathname === "/") {
-      window.location.replace("https://kingyeach.github.io/tap-blitz");
+      document.getElementById("redirect").setAttribute("content", "0;url=https://kingyeach.github.io/tap-blitz");
+    } else {
+      document.getElementById("redirect").remove(); // 리다이렉트 안 함
     }
 
     let score = 0;
